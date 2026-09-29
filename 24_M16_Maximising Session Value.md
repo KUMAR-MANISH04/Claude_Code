@@ -1,5 +1,3 @@
-# 25_M16_Maximising Session Value
-
 # M16 — Maximising the Value of CC Sessions
 
 > You pay for tokens. A small number of habits control most of that cost. The one mechanism that explains them all is the **prompt cache**.
@@ -84,7 +82,6 @@ The context window fills in three stages:
 | Disconnect unused MCP servers | Run `/mcp`; every connected server adds tool definitions to every turn |
 
 ---
-
 ## Session Shape: One Long Session Costs More
 
 One long session costs more than the same work spread over a few short ones — by more than most people expect. Turn 30 carries turns 1–29 with it; turn 1 of a fresh session carries nothing. (Worked example: over 24 turns, one long session costs ~3.6× the same work split with `/clear` every 6 turns.)
@@ -166,4 +163,31 @@ The status line is a small script Claude Code runs after each turn and prints ab
 }
 ```
 
-Claude Code sends the script one JSON object on stdin after each turn; the script prints one or more lines. It's not a hook — it only reads and prints. Use `~/.claude/settings.json` for every project, or `.claud
+Claude Code sends the script one JSON object on stdin after each turn; the script prints one or more lines. It's not a hook — it only reads and prints. Use `~/.claude/settings.json` for every project, or `.claude/settings.json` for one project.
+
+---
+
+## Your First Five Minutes in a Session
+
+1. Run `/context`. Look at what's loaded before you type.
+2. Run `/mcp` and disconnect servers this task doesn't need.
+3. Set your model and effort level **now**. Don't change them later in this task.
+4. @-mention the files you already know are involved.
+5. Do one task. Then run `/clear` before the next.
+6. Keep the status line in view. Watch `ctx` and the `cache` number after every turn.
+7. Going for lunch? Run `/compact` before you leave.
+
+---
+
+## Check Your Understanding
+
+> **Scenario:** An engineer keeps one session open all day. At ~turn 40 the answers feel weak, so they switch to a larger model. Still weak, so they raise the effort level too. They run `/compact` and take a one-hour lunch. Their spend is 4× a colleague's for similar work. Name four things they did wrong.
+
+**Answer:**
+
+1. **One session all day** — every turn carried the whole day's history. Should have run `/clear` at each new task.
+2. **Switched model mid-session** — refilled the entire conversation at full price, at its largest point.
+3. **Changed effort immediately after** — a second full refill, and now they can't tell which change helped.
+4. **`/compact` before an hour away** — correctly timed, but the idle hour expired the new cache anyway. The real error was not clearing much earlier, so the conversation was huge by then.
+
+**Better order:** check the context and prompt first. Then ask whether Claude didn't *know* enough or didn't *try* enough, and change **one** setting — in a fresh session, before the work starts.
