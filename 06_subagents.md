@@ -255,7 +255,8 @@ Provide feedback organised by priority:
 ```markdown
 ---
 name: debugger
-description: Debugging specialist for errors, test failures, and unexpected behaviour. Use proactively when encountering any issues.
+description: Debugging specialist for errors, test failures, and unexpected behaviour. 
+Use proactively when encountering any issues.
 tools: Read, Edit, Bash, Grep, Glob
 ---
 
